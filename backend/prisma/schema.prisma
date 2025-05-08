@@ -1,0 +1,29 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-py"
+  interface = "asyncio"
+}
+
+model Document {
+  id          String   @id @default(uuid())
+  title       String
+  filePath    String
+  content     String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  questions   Question[]
+}
+
+model Question {
+  id          String   @id @default(uuid())
+  question    String   @db.Text
+  answer      String   @db.Text
+  documentId  String
+  document    Document @relation(fields: [documentId], references: [id])
+  createdAt   DateTime @default(now())
+}
