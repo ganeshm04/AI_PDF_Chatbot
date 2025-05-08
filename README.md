@@ -1,4 +1,4 @@
-# pdf-qa-app
+# AI PDF Chatbot
 
 This project is a PDF Quality Assurance application designed to streamline the process of validating and testing PDF documents. 
 
